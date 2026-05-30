@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>베한 유학협회 | 베트남에서 한국 대학으로</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0A0F;
+  --bg2:#111118;
+  --bg3:#16161F;
+  --gold:#C9973A;
+  --gold2:#E8B85A;
+  --white:#FFFFFF;
+  --gray:#9A9AAA;
+  --border:rgba(255,255,255,0.07);
+  --font-display:'Black Han Sans',sans-serif;
+  --font-body:'Noto Sans KR',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+
+/* ── HEADER ── */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:0 40px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,backdrop-filter .4s;}
+.hdr.scrolled{background:rgba(10,10,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:42px;height:42px;background:var(--gold);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:14px;color:#000;flex-shrink:0;}
+.logo-ko{font-family:var(--font-display);font-size:17px;color:var(--white);letter-spacing:.02em;}
+.logo-en{font-size:9px;color:var(--gold2);letter-spacing:.12em;margin-top:1px;display:block;}
+.nav{display:flex;align-items:center;gap:32px;}
+.nav a{font-size:13px;color:rgba(255,255,255,.65);letter-spacing:.04em;transition:color .2s;}
+.nav a:hover{color:var(--white);}
+.nav-apply{
+  background:var(--gold);color:#000 !important;
+  padding:9px 22px;border-radius:3px;
+  font-size:12px;font-weight:700;letter-spacing:.06em;}
+.nav-apply:hover{background:var(--gold2);}
+.lang-sw{display:flex;gap:4px;margin-left:8px;}
+.lang-sw span{font-size:10px;padding:3px 9px;border-radius:2px;cursor:pointer;letter-spacing:.06em;font-weight:700;}
+.lon{background:var(--gold);color:#000;}
+.loff{background:rgba(255,255,255,.08);color:rgba(255,255,255,.45);}
+.hdr-tog{display:none;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;}
+.mob-nav{display:none;flex-direction:column;background:rgba(10,10,15,.97);
+  padding:20px 40px 28px;border-top:1px solid var(--border);gap:16px;}
+.mob-nav.open{display:flex;}
+.mob-nav a{font-size:15px;color:rgba(255,255,255,.75);padding:6px 0;border-bottom:1px solid var(--border);}
+.mob-apply{background:var(--gold);color:#000 !important;text-align:center;padding:12px;border-radius:3px;font-weight:700;margin-top:8px;border:none !important;}
+
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:700px;
+  display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+/* 슬라이드 배경 — 이미지 있으면 자동 적용 */
+.hero-slide{position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:opacity 1s ease;opacity:0;}
+.hero-slide.active{opacity:1;}
+.slide-bg1{background-color:#0D1A2E;background-image:url('images/slide1.jpg');}
+.slide-bg2{background-color:#1A0D2E;background-image:url('images/slide2.jpg');}
+.slide-bg3{background-color:#0D2E1A;background-image:url('images/slide3.jpg');}
+.hero-overlay{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(105deg,rgba(10,10,15,.92) 0%,rgba(10,10,15,.6) 55%,rgba(10,10,15,.2) 100%);}
+/* grid texture */
+.hero-grid{position:absolute;inset:0;z-index:1;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:60px 60px;}
+.hero-content{position:relative;z-index:2;padding:0 80px;max-width:720px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.35);
+  color:var(--gold2);font-size:11px;font-weight:500;letter-spacing:.14em;
+  padding:6px 16px;border-radius:2px;margin-bottom:28px;text-transform:uppercase;}
+.hero-eyebrow i{font-size:13px;}
+.hero h1{font-family:var(--font-display);font-size:72px;line-height:1.1;
+  color:var(--white);margin-bottom:20px;letter-spacing:.01em;}
+.hero h1 em{color:var(--gold2);font-style:normal;display:block;}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.55);line-height:1.9;
+  margin-bottom:36px;font-weight:300;max-width:480px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:#000;padding:15px 34px;
+  border-radius:3px;font-size:14px;font-weight:700;letter-spacing:.04em;
+  display:inline-block;transition:background .2s;}
+.btn-gold:hover{background:var(--gold2);}
+.btn-outline{background:transparent;color:rgba(255,255,255,.8);
+  border:1px solid rgba(255,255,255,.25);padding:14px 28px;
+  border-radius:3px;font-size:14px;display:inline-block;
+  transition:all .2s;letter-spacing:.02em;}
+.btn-outline:hover{border-color:rgba(255,255,255,.55);color:#fff;}
+
+/* Slide indicators */
+.hero-dots{position:absolute;bottom:36px;left:80px;z-index:3;
+  display:flex;gap:10px;align-items:center;}
+.hdot{width:28px;height:2px;background:rgba(255,255,255,.25);cursor:pointer;
+  border:none;transition:all .3s;}
+.hdot.on{width:52px;background:var(--gold2);}
+.hero-scroll{position:absolute;bottom:36px;right:60px;z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:rgba(255,255,255,.3);font-size:10px;letter-spacing:.14em;}
+.hero-scroll::before{content:'';display:block;width:1px;height:40px;
+  background:linear-gradient(rgba(255,255,255,.3),transparent);}
+
+/* ── STATS ── */
+.stats{background:var(--bg2);border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);}
+.stats-inner{max-width:1200px;margin:0 auto;padding:0 40px;
+  display:flex;}
+.stat{flex:1;padding:28px 20px;text-align:center;
+  border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-n{display:block;font-family:'Bebas Neue',sans-serif;
+  font-size:40px;color:var(--gold2);letter-spacing:.04em;line-height:1;}
+.stat-l{display:block;font-size:11px;color:var(--gray);
+  margin-top:6px;letter-spacing:.06em;}
+
+/* ── SECTION BASE ── */
+.sec{padding:100px 0;}
+.sec-dark{background:var(--bg2);}
+.sec-mid{background:var(--bg3);}
+.sec-lbl{font-size:10px;color:var(--gold);letter-spacing:.2em;
+  font-weight:700;text-transform:uppercase;margin-bottom:12px;display:block;}
+.sec-ttl{font-family:var(--font-display);font-size:44px;
+  color:var(--white);line-height:1.1;margin-bottom:16px;letter-spacing:.01em;}
+.sec-dsc{font-size:15px;color:var(--gray);line-height:1.85;
+  max-width:520px;margin-bottom:48px;}
+
+/* ── PROCESS ── */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);}
+.pstep{background:var(--bg);padding:36px 28px;position:relative;}
+.pstep:hover{background:var(--bg2);}
+.pn{font-family:'Bebas Neue',sans-serif;font-size:56px;
+  color:rgba(255,255,255,.06);line-height:1;margin-bottom:20px;display:block;}
+.pic{width:44px;height:44px;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;font-size:22px;}
+.pic-bl{background:rgba(26,95,168,.2);color:#6AB0FF;}
+.pic-gr{background:rgba(26,122,74,.2);color:#5DCAA5;}
+.pic-go{background:rgba(201,151,58,.15);color:var(--gold2);}
+.pic-pu{background:rgba(123,63,168,.2);color:#C09FFF;}
+.pstep h3{font-size:15px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.pstep p{font-size:13px;color:var(--gray);line-height:1.65;}
+.parr{position:absolute;top:36px;right:-14px;
+  width:28px;height:28px;border:1px solid var(--border);
+  background:var(--bg);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  z-index:2;font-size:12px;color:var(--gold);}
+
+/* ── FEATURE SPLIT ── */
+.feat-split{display:grid;grid-template-columns:1fr 1fr;}
+.feat-vis{background:var(--bg2);min-height:520px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;}
+.feat-body{background:var(--bg3);padding:80px 60px;
+  display:flex;flex-direction:column;justify-content:center;}
+.feat-item{display:flex;gap:16px;margin-bottom:28px;
+  padding-bottom:28px;border-bottom:1px solid var(--border);}
+.feat-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.feat-icon{width:36px;height:36px;flex-shrink:0;margin-top:2px;
+  background:rgba(201,151,58,.12);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;color:var(--gold2);}
+.feat-tt{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.feat-dd{font-size:13px;color:var(--gray);line-height:1.6;}
+
+/* ── NEWS ── */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);}
+.nc{background:var(--bg2);overflow:hidden;cursor:pointer;
+  transition:background .2s;}
+.nc:hover{background:var(--bg3);}
+.nc-img{height:200px;background-size:cover;background-position:center;
+  position:relative;overflow:hidden;}
+.nc-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,10,15,.8),transparent);}
+.nc-tag{position:absolute;top:16px;left:16px;z-index:1;
+  font-size:10px;font-weight:700;letter-spacing:.1em;
+  padding:4px 10px;border-radius:2px;text-transform:uppercase;}
+.tg-notice{background:var(--gold);color:#000;}
+.tg-korean{background:#1A7A4A;color:#fff;}
+.tg-review{background:#7B3FA8;color:#fff;}
+.tg-info  {background:#1A5AA8;color:#fff;}
+.nc-date{position:absolute;bottom:16px;right:16px;z-index:1;
+  font-size:10px;color:rgba(255,255,255,.55);}
+.nc-body{padding:24px 22px;}
+.nc-body h3{font-size:15px;font-weight:700;color:var(--white);
+  margin-bottom:8px;line-height:1.45;}
+.nc-body p{font-size:13px;color:var(--gray);line-height:1.65;}
+.nc-more{font-size:12px;color:var(--gold);margin-top:12px;
+  display:flex;align-items:center;gap:5px;letter-spacing:.04em;}
+
+/* ── BOARD ── */
+.board-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--border);}
+.bx{background:var(--bg2);}
+.bx-head{padding:16px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;}
+.bx-ttl{font-size:12px;font-weight:700;color:var(--white);
+  display:flex;align-items:center;gap:8px;letter-spacing:.06em;text-transform:uppercase;}
+.bx-ttl i{color:var(--gold);font-size:16px;}
+.bx-more{font-size:11px;color:var(--gold);letter-spacing:.04em;}
+.brow{padding:12px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .15s;}
+.brow:last-child{border-bottom:none;}
+.brow:hover{background:var(--bg3);}
+.bc{font-size:9px;font-weight:700;padding:2px 8px;border-radius:2px;
+  white-space:nowrap;flex-shrink:0;letter-spacing:.06em;text-transform:uppercase;}
+.bc-new   {background:rgba(201,151,58,.15);color:var(--gold2);}
+.bc-notice{background:rgba(26,95,168,.2);color:#6AB0FF;}
+.bc-info  {background:rgba(26,122,74,.2);color:#5DCAA5;}
+.bc-review{background:rgba(123,63,168,.2);color:#C09FFF;}
+.bc-qa    {background:rgba(26,122,74,.2);color:#5DCAA5;}
+.bt{font-size:13px;color:rgba(255,255,255,.75);flex:1;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.brow:hover .bt{color:var(--white);}
+.bd{font-size:11px;color:rgba(255,255,255,.25);white-space:nowrap;}
+/* 자료실 */
+.frow{padding:12px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .15s;}
+.frow:last-child{border-bottom:none;}
+.frow:hover{background:var(--bg3);}
+.fic{width:34px;height:34px;border-radius:4px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;}
+.fn{font-size:13px;color:rgba(255,255,255,.75);flex:1;}
+.fdl{font-size:11px;color:var(--gold);display:flex;align-items:center;
+  gap:4px;white-space:nowrap;letter-spacing:.04em;}
+
+/* ── TESTIMONIALS ── */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);}
+.tc{background:var(--bg2);padding:36px 30px;}
+.tc-top{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.tc-av{width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;}
+.tc-who{}
+.tc-name{font-size:14px;font-weight:700;color:var(--white);}
+.tc-uni{font-size:11px;color:var(--gray);margin-top:2px;}
+.tc-stars{color:var(--gold2);font-size:13px;margin-bottom:14px;letter-spacing:.06em;}
+.tc-q{font-size:13px;color:rgba(255,255,255,.6);line-height:1.8;font-style:italic;}
+
+/* ── CTA ── */
+.cta-sec{padding:120px 0;position:relative;overflow:hidden;
+  background:var(--bg);}
+.cta-sec::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(201,151,58,.07),transparent);}
+.cta-inner{position:relative;z-index:2;text-align:center;}
+.cta-inner h2{font-family:var(--font-display);font-size:56px;
+  color:var(--white);margin-bottom:16px;letter-spacing:.01em;}
+.cta-inner p{font-size:16px;color:var(--gray);margin-bottom:40px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* ── TRUST ── */
+.trust{background:var(--bg2);border-top:1px solid var(--border);
+  padding:32px 40px;display:flex;align-items:center;
+  justify-content:center;gap:56px;flex-wrap:wrap;}
+.ti{display:flex;align-items:center;gap:12px;}
+.ti i{font-size:22px;color:var(--gold);}
+.ti strong{display:block;font-size:13px;color:var(--white);letter-spacing:.02em;}
+.ti span{display:block;font-size:11px;color:var(--gray);margin-top:2px;}
+.tdiv{width:1px;height:40px;background:var(--border);}
+
+/* ── FOOTER ── */
+.ftr{background:#050508;border-top:1px solid var(--border);padding:40px 0;}
+.ftr-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.ftr-logo{display:flex;align-items:center;gap:12px;}
+.ftr-links{display:flex;gap:24px;}
+.ftr-links a{font-size:12px;color:rgba(255,255,255,.3);letter-spacing:.04em;}
+.ftr-links a:hover{color:var(--gold2);}
+.ftr-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.04em;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .nav{display:none;}
+  .hdr-tog{display:block;}
+  .hero h1{font-size:52px;}
+  .hero-content{padding:0 40px;}
+  .hero-dots{left:40px;}
+  .feat-split{grid-template-columns:1fr;}
+  .feat-vis{min-height:280px;}
+  .feat-body{padding:52px 40px;}
+  .process-grid{grid-template-columns:1fr 1fr;}
+  .parr{display:none;}
+  .tgrid{grid-template-columns:1fr 1fr;}
+  .news-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  .wrap,.stats-inner{padding:0 20px;}
+  .hero h1{font-size:36px;}
+  .hero-content{padding:0 20px;}
+  .hero-dots{left:20px;}
+  .hero-scroll{display:none;}
+  .sec{padding:64px 0;}
+  .sec-ttl{font-size:32px;}
+  .process-grid{grid-template-columns:1fr;}
+  .news-grid{grid-template-columns:1fr;}
+  .board-grid{grid-template-columns:1fr;}
+  .tgrid{grid-template-columns:1fr;}
+  .stats-inner{flex-wrap:wrap;}
+  .stat{min-width:50%;}
+  .trust{gap:24px;}
+  .tdiv{display:none;}
+  .ftr-in{flex-direction:column;text-align:center;}
+  .ftr-links{justify-content:center;}
+  .cta-inner h2{font-size:36px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr" id="hdr">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">베한</div>
+    <div>
+      <span class="logo-ko">베한 유학협회</span>
+      <span class="logo-en">VIET-KOREA STUDY ABROAD ASSOCIATION</span>
+    </div>
+  </a>
+  <nav class="nav">
+    <a href="pages/about.html">협회 소개</a>
+    <a href="pages/guide.html">한국 유학 안내</a>
+    <a href="pages/process.html">온라인 프로세스</a>
+    <a href="pages/board.html">게시판</a>
+    <a href="pages/files.html">자료실</a>
+    <a href="pages/apply.html" class="nav-apply">지원하기 →</a>
+    <div class="lang-sw">
+      <span class="lon">KO</span>
+      <span class="loff">VN</span>
+    </div>
+  </nav>
+  <button class="hdr-tog" id="togBtn"><i class="ti ti-menu-2"></i></button>
+</header>
+<nav class="mob-nav" id="mobNav">
+  <a href="pages/about.html">협회 소개</a>
+  <a href="pages/guide.html">한국 유학 안내</a>
+  <a href="pages/process.html">온라인 프로세스</a>
+  <a href="pages/board.html">게시판</a>
+  <a href="pages/files.html">자료실</a>
+  <a href="pages/apply.html" class="mob-apply">지원하기 →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <!-- ★ 이미지 교체: images/slide1.jpg, slide2.jpg, slide3.jpg -->
+    <div class="hero-slide slide-bg1 active"></div>
+    <div class="hero-slide slide-bg2"></div>
+    <div class="hero-slide slide-bg3"></div>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow" id="eyebrow">
+      <i class="ti ti-award"></i>
+      <span id="eyebrow-txt">ONLINE-FIRST 유학 플랫폼</span>
+    </span>
+    <h1 id="hero-h1">베트남에서<br>한국 대학까지<br><em id="hero-em">온라인으로 완성</em></h1>
+    <p class="hero-sub" id="hero-sub">오프라인 설명회 없이, 집에서 신청하고<br>한국 대학에 입학하세요.</p>
+    <div class="hero-btns">
+      <a href="pages/apply.html" class="btn-gold" id="hero-btn1">지원서 작성 시작 →</a>
+      <a href="pages/guide.html" class="btn-outline" id="hero-btn2">유학 안내 보기</a>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <button class="hdot on" data-i="0"></button>
+    <button class="hdot" data-i="1"></button>
+    <button class="hdot" data-i="2"></button>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-n">100%</span><span class="stat-l">온라인 프로세스</span></div>
+    <div class="stat"><span class="stat-n">200+</span><span class="stat-l">파트너 한국 대학</span></div>
+    <div class="stat"><span class="stat-n">D-2</span><span class="stat-l">유학 비자 전문</span></div>
+    <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">온라인 지원 가능</span></div>
+    <div class="stat"><span class="stat-n">500+</span><span class="stat-l">누적 합격생</span></div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="sec">
+  <div class="wrap">
+    <span class="sec-lbl">Online Process</span>
+    <h2 class="sec-ttl">4단계로 완성되는<br>나의 한국 유학</h2>
+    <p class="sec-dsc">오프라인 방문 없이, 모든 절차를 온라인으로 진행합니다.</p>
+    <div class="process-grid">
+      <div class="pstep">
+        <span class="pn">01</span>
+        <div class="pic pic-bl"><i class="ti ti-clipboard-list"></i></div>
+        <h3>온라인 지원</h3>
+        <p>사이트에서 지원서 작성 및 서류 업로드</p>
+        <div class="parr"><i class="ti ti-chevron-right"></i></div>
+      </div>
+      <div class="pstep">
+        <span class="pn">02</span>
+        <div class="pic pic-gr"><i class="ti ti-user-check"></i></div>
+        <h3>심사 &amp; 선발</h3>
+        <p>담당자 검토 후 합격 여부 온라인 통보</p>
+        <div class="parr"><i class="ti ti-chevron-right"></i></div>
+      </div>
+      <div class="pstep">
+        <span class="pn">03</span>
+        <div class="pic pic-go"><i class="ti ti-book"></i></div>
+        <h3>한국어 교육</h3>
+        <p>온라인 한국어 과정 이수 및 TOPIK 준비</p>
+        <div class="parr"><i class="ti ti-chevron-right"></i></div>
+      </div>
+      <div class="pstep">
+        <span class="pn">04</span>
+        <div class="pic pic-pu"><i class="ti ti-plane-departure"></i></div>
+        <h3>비자 &amp; 입학</h3>
+        <p>D-2 비자 신청, 입학 허가서 수령, 출국</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE SPLIT -->
+<div class="feat-split">
+  <div class="feat-vis">
+    <svg viewBox="0 0 560 520" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <rect width="560" height="520" fill="#0D3060"/>
+      <defs>
+        <radialGradient id="fg1" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#1A5AA8" stop-opacity=".5"/>
+          <stop offset="100%" stop-color="#0D3060" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="560" height="520" fill="url(#fg1)"/>
+      <!-- grid -->
+      <line x1="0" y1="130" x2="560" y2="130" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+      <line x1="0" y1="260" x2="560" y2="260" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+      <line x1="0" y1="390" x2="560" y2="390" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+      <line x1="140" y1="0" x2="140" y2="520" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+      <line x1="280" y1="0" x2="280" y2="520" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+      <line x1="420" y1="0" x2="420" y2="520" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+      <!-- Laptop -->
+      <rect x="80" y="80" width="300" height="200" rx="10" fill="#0A1A3A" stroke="#2E6BAD" stroke-width="1.5"/>
+      <rect x="92" y="92" width="276" height="168" rx="6" fill="#0F2055"/>
+      <!-- Screen UI -->
+      <rect x="104" y="104" width="160" height="10" rx="3" fill="#1A5AA8"/>
+      <text x="106" y="113" font-size="8" fill="#fff" font-family="sans-serif" font-weight="600">베한 유학협회 온라인 지원</text>
+      <rect x="104" y="120" width="120" height="6" rx="2" fill="rgba(255,255,255,.15)"/>
+      <rect x="104" y="131" width="100" height="6" rx="2" fill="rgba(255,255,255,.1)"/>
+      <rect x="104" y="148" width="88" height="22" rx="4" fill="#C9973A"/>
+      <text x="112" y="163" font-size="9" fill="#000" font-family="sans-serif" font-weight="700">지원하기 →</text>
+      <!-- Progress -->
+      <rect x="104" y="192" width="252" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+      <rect x="104" y="192" width="162" height="8" rx="4" fill="#7B3FA8"/>
+      <text x="271" y="200" font-size="7" fill="#E8B85A" font-family="sans-serif">64%</text>
+      <text x="104" y="216" font-size="7" fill="rgba(255,255,255,.4)" font-family="sans-serif">진행률 · STEP 3/4 완료</text>
+      <!-- Laptop base -->
+      <rect x="60" y="280" width="340" height="14" rx="3" fill="#1A3A6A"/>
+      <rect x="170" y="294" width="120" height="7" rx="2" fill="#142A50"/>
+      <!-- VN -> KR arrow -->
+      <circle cx="120" cy="370" r="30" fill="#CC0000" opacity=".8" stroke="#FF6666" stroke-width="1"/>
+      <text x="104" y="366" font-size="11" fill="#FFD700" font-family="sans-serif" font-weight="700">VN</text>
+      <text x="103" y="382" font-size="20" font-family="sans-serif">🇻🇳</text>
+      <line x1="152" y1="370" x2="222" y2="370" stroke="#E8B85A" stroke-width="2.5" stroke-dasharray="8,5"/>
+      <polygon points="220,364 236,370 220,376" fill="#E8B85A"/>
+      <circle cx="268" cy="370" r="30" fill="#003478" opacity=".85" stroke="#6699FF" stroke-width="1"/>
+      <text x="252" y="366" font-size="11" fill="#fff" font-family="sans-serif" font-weight="700">KR</text>
+      <text x="251" y="382" font-size="20" font-family="sans-serif">🇰🇷</text>
+      <text x="310" y="374" font-size="11" fill="rgba(255,255,255,.4)" font-family="sans-serif">+ 500명 합격</text>
+      <!-- Notification -->
+      <rect x="20" y="100" width="120" height="48" rx="6" fill="rgba(201,151,58,.12)" stroke="rgba(201,151,58,.4)" stroke-width="1"/>
+      <text x="32" y="120" font-size="10" fill="#E8B85A" font-family="sans-serif" font-weight="700">서류 심사 완료</text>
+      <text x="32" y="138" font-size="9" fill="rgba(255,255,255,.45)" font-family="sans-serif">오늘 오전 10:32 ✓</text>
+      <!-- D2 badge -->
+      <rect x="400" y="180" width="120" height="48" rx="6" fill="rgba(123,63,168,.15)" stroke="rgba(123,63,168,.4)" stroke-width="1"/>
+      <text x="414" y="200" font-size="10" fill="#C09FFF" font-family="sans-serif" font-weight="700">D-2 비자 발급</text>
+      <text x="414" y="218" font-size="9" fill="rgba(255,255,255,.45)" font-family="sans-serif">출국 준비 완료 ✓</text>
+    </svg>
+  </div>
+  <div class="feat-body">
+    <span class="sec-lbl">Why Us</span>
+    <h2 class="sec-ttl" style="font-size:36px;">기존 유학원과<br>무엇이 다른가요?</h2>
+    <p class="sec-dsc" style="margin-bottom:32px;">베트남 최초 온라인 전용 유학 플랫폼</p>
+    <div class="feat-item">
+      <div class="feat-icon"><i class="ti ti-device-laptop"></i></div>
+      <div><div class="feat-tt">100% 온라인 진행</div><div class="feat-dd">설명회 없이 집에서 전 과정 완료</div></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon"><i class="ti ti-currency-dollar"></i></div>
+      <div><div class="feat-tt">투명한 비용 공개</div><div class="feat-dd">숨겨진 수수료 없이 온라인 결제</div></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon"><i class="ti ti-map-pin"></i></div>
+      <div><div class="feat-tt">전국 어디서나 지원 가능</div><div class="feat-dd">하노이·호치민·지방 모두 동일 서비스</div></div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon"><i class="ti ti-book"></i></div>
+      <div><div class="feat-tt">한국어 교육 포함</div><div class="feat-dd">입학 전 온라인 한국어 과정 제공</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section class="sec sec-dark">
+  <div class="wrap">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;">
+      <div>
+        <span class="sec-lbl">Latest News</span>
+        <h2 class="sec-ttl" style="margin-bottom:0;">최신 소식</h2>
+      </div>
+      <a href="pages/board.html" style="font-size:13px;color:var(--gold);display:flex;align-items:center;gap:5px;letter-spacing:.04em;">전체 보기 <i class="ti ti-arrow-right"></i></a>
+    </div>
+    <div class="news-grid" id="newsGrid"></div>
+  </div>
+</section>
+
+<!-- BOARD -->
+<section class="sec sec-mid">
+  <div class="wrap">
+    <span class="sec-lbl">Board &amp; Files</span>
+    <h2 class="sec-ttl">공지사항 · 게시판 · 자료실</h2>
+    <p class="sec-dsc">협회의 최신 공지와 유학 자료를 확인하고 다운로드하세요.</p>
+    <div class="board-grid">
+      <div class="bx">
+        <div class="bx-head">
+          <span class="bx-ttl"><i class="ti ti-speakerphone"></i>공지사항</span>
+          <a href="pages/board.html" class="bx-more">전체보기 →</a>
+        </div>
+        <div id="noticeList"></div>
+      </div>
+      <div class="bx">
+        <div class="bx-head">
+          <span class="bx-ttl"><i class="ti ti-folder"></i>자료실</span>
+          <a href="pages/files.html" class="bx-more">전체보기 →</a>
+        </div>
+        <div id="fileList"></div>
+      </div>
+      <div class="bx">
+        <div class="bx-head">
+          <span class="bx-ttl"><i class="ti ti-message-circle"></i>Q&amp;A</span>
+          <a href="pages/board.html" class="bx-more">전체보기 →</a>
+        </div>
+        <div id="qaList"></div>
+      </div>
+      <div class="bx">
+        <div class="bx-head">
+          <span class="bx-ttl"><i class="ti ti-star"></i>합격 후기</span>
+          <a href="pages/board.html" class="bx-more">전체보기 →</a>
+        </div>
+        <div id="reviewList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec">
+  <div class="wrap">
+    <span class="sec-lbl">Success Stories</span>
+    <h2 class="sec-ttl">실제 합격생들의 이야기</h2>
+    <p class="sec-dsc">온라인으로 준비해 한국 대학에 합격한 학생들의 생생한 후기</p>
+    <div class="tgrid">
+      <div class="tc">
+        <div class="tc-top">
+          <div class="tc-av" style="background:rgba(201,151,58,.15);color:var(--gold2);">AN</div>
+          <div class="tc-who">
+            <div class="tc-name">Nguyen Anh</div>
+            <div class="tc-uni">한국외국어대학교 · 2024 입학</div>
+          </div>
+        </div>
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-q">"집에서 모든 서류를 제출하고 합격 통보를 받았어요. 설명회를 찾아다닐 필요가 없었습니다."</p>
+      </div>
+      <div class="tc">
+        <div class="tc-top">
+          <div class="tc-av" style="background:rgba(26,90,168,.15);color:#6AB0FF;">LT</div>
+          <div class="tc-who">
+            <div class="tc-name">Le Thi Hoa</div>
+            <div class="tc-uni">부산대학교 · 2024 입학</div>
+          </div>
+        </div>
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-q">"지방에 살아서 하노이까지 가기 힘들었는데, 온라인으로 모두 해결했습니다. 비용도 투명했어요."</p>
+      </div>
+      <div class="tc">
+        <div class="tc-top">
+          <div class="tc-av" style="background:rgba(29,158,117,.15);color:#5DCAA5;">PT</div>
+          <div class="tc-who">
+            <div class="tc-name">Pham Thanh</div>
+            <div class="tc-uni">경희대학교 · 2025 입학</div>
+          </div>
+        </div>
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-q">"한국어 온라인 과정도 제공되어 TOPIK 준비가 수월했고, 담당자가 빠르게 답변해줬어요."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wrap cta-inner">
+    <h2>지금 바로 지원하세요</h2>
+    <p>온라인으로 24시간 지원 가능합니다. 베한 유학협회가 함께합니다.</p>
+    <div class="cta-btns">
+      <a href="pages/apply.html" class="btn-gold">지원서 작성하기 →</a>
+      <a href="pages/guide.html" class="btn-outline">유학 안내 먼저 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="ti"><i class="ti ti-shield-check"></i><div><strong>공식 등록 협회</strong><span>정식 인가 유학 기관</span></div></div>
+  <div class="tdiv"></div>
+  <div class="ti"><i class="ti ti-device-laptop"></i><div><strong>100% 온라인</strong><span>집에서 모든 절차 완료</span></div></div>
+  <div class="tdiv"></div>
+  <div class="ti"><i class="ti ti-lock"></i><div><strong>안전한 결제</strong><span>투명한 비용 공개</span></div></div>
+  <div class="tdiv"></div>
+  <div class="ti"><i class="ti ti-headset"></i><div><strong>Zalo · KakaoTalk</strong><span>전담 상담 지원</span></div></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <div class="ftr-logo">
+      <div class="logo-mark" style="width:32px;height:32px;font-size:11px;">베한</div>
+      <div>
+        <span class="logo-ko" style="font-size:14px;">베한 유학협회</span>
+        <span class="logo-en">Viet-Korea Study Abroad Association</span>
+      </div>
+    </div>
+    <div class="ftr-links">
+      <a href="pages/privacy.html">개인정보처리방침</a>
+      <a href="pages/terms.html">이용약관</a>
+      <a href="pages/contact.html">문의하기</a>
+    </div>
+    <p class="ftr-copy">© 2025 베한 유학협회. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* ── 헤더 스크롤 ── */
+window.addEventListener('scroll',function(){
+  document.getElementById('hdr').classList.toggle('scrolled',window.scrollY>40);
+});
+
+/* ── 모바일 메뉴 ── */
+document.getElementById('togBtn').addEventListener('click',function(){
+  document.getElementById('mobNav').classList.toggle('open');
+});
+
+/* ── 히어로 슬라이더 ── */
+(function(){
+  var slides=document.querySelectorAll('.hero-slide');
+  var dots=document.querySelectorAll('.hdot');
+  var contents=[
+    {eyebrow:'ONLINE-FIRST 유학 플랫폼',icon:'ti-award',
+     h1:'베트남에서<br>한국 대학까지<br><em>온라인으로 완성</em>',
+     sub:'오프라인 설명회 없이, 집에서 신청하고<br>한국 대학에 입학하세요.',
+     btn1:'지원서 작성 시작 →',btn2:'유학 안내 보기'},
+    {eyebrow:'온라인 한국어 교육',icon:'ti-book',
+     h1:'입학 전<br><em>한국어 완전 정복</em>',
+     sub:'TOPIK 준비부터 대학 강의 수강까지<br>체계적인 온라인 한국어 과정을 제공합니다.',
+     btn1:'교육 과정 보기 →',btn2:'TOPIK 안내'},
+    {eyebrow:'2025 하반기 모집',icon:'ti-speakerphone',
+     h1:'<em>지금 모집 중</em><br>2025년 9월 입학',
+     sub:'마감이 얼마 남지 않았습니다.<br>온라인으로 지금 바로 지원하세요.',
+     btn1:'지원서 작성하기 →',btn2:'모집 요강 보기'},
+  ];
+  var cur=0,timer;
+  function go(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('on');
+    cur=(n+3)%3;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('on');
+    var c=contents[cur];
+    document.getElementById('eyebrow-txt').textContent=c.eyebrow;
+    document.getElementById('hero-h1').innerHTML=c.h1;
+    document.getElementById('hero-sub').innerHTML=c.sub;
+    document.getElementById('hero-btn1').textContent=c.btn1;
+    document.getElementById('hero-btn2').textContent=c.btn2;
+  }
+  function reset(){clearInterval(timer);timer=setInterval(function(){go(cur+1);},5500);}
+  dots.forEach(function(d){d.addEventListener('click',function(){go(+d.dataset.i);reset();});});
+  reset();
+})();
+
+/* ── 뉴스 카드 ★ 내용 수정 ── */
+var NEWS=[
+  {tag:'tg-notice',tagTxt:'모집공고',date:'2025.07.01',bg:'#0D1A2E',img:'images/news1.jpg',
+   title:'2025년 9월 입학 최종 모집 공고',
+   desc:'마감일: 2025년 8월 15일. 온라인 지원서 및 필수 서류를 기한 내 제출하세요.',link:'pages/board.html'},
+  {tag:'tg-korean',tagTxt:'한국어',date:'2025.06.20',bg:'#0D1F12',img:'images/news2.jpg',
+   title:'2025년 TOPIK 시험 일정 및 접수 안내',
+   desc:'4회차 시험 접수가 시작되었습니다. 협회 온라인 포털에서 신청 가능합니다.',link:'pages/board.html'},
+  {tag:'tg-review',tagTxt:'합격후기',date:'2025.06.10',bg:'#1A0D28',img:'images/news3.jpg',
+   title:'경희대 합격 후기 — Nguyen Van An 학생',
+   desc:'온라인으로 모든 서류를 제출하고 최종 합격까지 3개월이 걸렸어요.',link:'pages/board.html'},
+];
+document.getElementById('newsGrid').innerHTML=NEWS.map(function(n){
+  return '<a href="'+n.link+'" class="nc"><div class="nc-img" style="background-color:'+n.bg+';background-image:url(\''+n.img+'\');background-size:cover;background-position:center;">'
+    +'<span class="nc-tag '+n.tag+'">'+n.tagTxt+'</span><span class="nc-date">'+n.date+'</span></div>'
+    +'<div class="nc-body"><h3>'+n.title+'</h3><p>'+n.desc+'</p>'
+    +'<div class="nc-more"><i class="ti ti-arrow-right"></i> 자세히 보기</div></div></a>';
+}).join('');
+
+/* ── 게시판 ★ 내용 수정 ── */
+var NOTICES=[
+  {c:'bc-new',l:'NEW',t:'2025 하반기 지원서 양식 변경 안내',d:'07.05'},
+  {c:'bc-notice',l:'공지',t:'9월 입학 최종 합격자 발표 일정',d:'07.01'},
+  {c:'bc-notice',l:'공지',t:'협회 온라인 상담 운영시간 변경',d:'06.28'},
+  {c:'bc-info',l:'안내',t:'D-2 비자 서류 제출 유의사항',d:'06.20'},
+  {c:'bc-info',l:'안내',t:'TOPIK 시험 접수 방법 상세 안내',d:'06.15'},
+];
+var FILES=[
+  {bg:'rgba(201,151,58,.12)',ic:'var(--gold2)',ico:'ti-file-type-pdf',n:'2025 지원서 양식 (한국어/베트남어)',u:'files/apply-form-2025.pdf'},
+  {bg:'rgba(26,95,168,.15)',ic:'#6AB0FF',ico:'ti-file-type-pdf',n:'D-2 비자 준비 체크리스트',u:'files/d2-visa-checklist.pdf'},
+  {bg:'rgba(26,122,74,.15)',ic:'#5DCAA5',ico:'ti-file-spreadsheet',n:'파트너 대학 목록 및 전공 안내',u:'files/partner-universities.xlsx'},
+  {bg:'rgba(123,63,168,.15)',ic:'#C09FFF',ico:'ti-file-type-pdf',n:'유학 비용 상세 안내 (2025년 기준)',u:'files/cost-guide-2025.pdf'},
+  {bg:'rgba(201,151,58,.12)',ic:'var(--gold2)',ico:'ti-file-type-doc',n:'TOPIK 학습 자료 모음집',u:'files/topik-study-pack.pdf'},
+];
+var QA=[
+  {c:'bc-new',l:'NEW',t:'입학 조건에 고등학교 내신이 중요한가요?',d:'07.04'},
+  {c:'bc-qa',l:'답변',t:'TOPIK 없이도 지원이 가능한가요?',d:'07.02'},
+  {c:'bc-qa',l:'답변',t:'비자 발급까지 보통 얼마나 걸리나요?',d:'06.30'},
+  {c:'bc-qa',l:'답변',t:'한 번에 여러 대학에 지원할 수 있나요?',d:'06.25'},
+  {c:'bc-qa',l:'답변',t:'지방 거주자도 온라인으로만 가능한가요?',d:'06.20'},
+];
+var REVIEWS=[
+  {c:'bc-new',l:'NEW',t:'[경희대] 국제학부 최종 합격 후기',d:'07.03'},
+  {c:'bc-review',l:'후기',t:'[한국외대] 온라인으로만 준비해서 합격!',d:'06.28'},
+  {c:'bc-review',l:'후기',t:'[부산대] 지방에서 온라인 지원 성공기',d:'06.22'},
+  {c:'bc-review',l:'후기',t:'[성균관대] TOPIK 3급으로 합격한 방법',d:'06.15'},
+  {c:'bc-review',l:'후기',t:'[연세대 어학당] 한국어 과정 후기',d:'06.08'},
+];
+function rows(id,arr){
+  document.getElementById(id).innerHTML=arr.map(function(r){
+    return '<div class="brow"><span class="bc '+r.c+'">'+r.l+'</span><span class="bt">'+r.t+'</span><span class="bd">'+r.d+'</span></div>';
+  }).join('');
+}
+function frows(id,arr){
+  document.getElementById(id).innerHTML=arr.map(function(f){
+    return '<div class="frow"><div class="fic" style="background:'+f.bg+'"><i class="ti '+f.ico+'" style="color:'+f.ic+'"></i></div>'
+      +'<span class="fn">'+f.n+'</span>'
+      +'<a href="'+f.u+'" class="fdl" download><i class="ti ti-download"></i> 다운로드</a></div>';
+  }).join('');
+}
+rows('noticeList',NOTICES);
+frows('fileList',FILES);
+rows('qaList',QA);
+rows('reviewList',REVIEWS);
+</script>
+</body>
+</html>

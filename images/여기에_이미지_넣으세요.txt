@@ -1,0 +1,11 @@
+이 폴더에 이미지를 넣으세요.
+
+슬라이드 배경 (권장 1400x600px 이상):
+- slide1.jpg
+- slide2.jpg
+- slide3.jpg
+
+뉴스 카드 이미지 (선택, 없어도 컬러 배경으로 표시됨):
+- news1.jpg
+- news2.jpg
+- news3.jpg
